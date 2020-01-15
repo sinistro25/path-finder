@@ -6,14 +6,17 @@ from bfs import BFS
 from a_star import ASTAR
 import time
 import sys
+from copy import deepcopy
 
 if __name__ == "__main__":
     pygame.init()
     
-    DSURF = pygame.display.set_mode((DISPLAYHEIGHT,DISPLAYWIDTH))
-    board = Board(BOARDWIDTH,BOARDHEIGHT,130)
-    #bfs   = BFS(board)
+    DSURF = pygame.display.set_mode((DISPLAYWIDTH,DISPLAYHEIGHT))
+    board = Board(BOARDWIDTH,BOARDHEIGHT,100)
+    board2 = deepcopy(board)
+    board2.shift = BOARDWIDTH + 2
     a_star = ASTAR(board)
+    bfs   = BFS(board2)
     DSURF.fill(Color.BLACK.value)
     
     while True:
@@ -23,9 +26,11 @@ if __name__ == "__main__":
                 pygame.display.quit()
                 sys.exit(0)
         
-        # bfs.next()
         a_star.next()
+        bfs.next()
+        
         board.draw(DSURF)
+        board2.draw(DSURF)
         
         pygame.display.update()
                 
