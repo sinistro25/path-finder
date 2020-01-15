@@ -2,11 +2,12 @@ from consts import *
 import random
 import pygame.draw as pdraw
 class Board:
-    def __init__(self,w,h,num_blocks, shift=0):
+    def __init__(self,w,h,num_blocks, shift_w=0, shift_h=TEXTHEIGHT):
         
         self.w = w
         self.h = h
-        self.shift = 0
+        self.shift_w = shift_w
+        self.shift_h = shift_h
         self.board = [Tile.BLANK if i + w*j >= num_blocks + 1 else Tile.BLOCK for i in range(w) for j in range(h)]
         self.board[0] = Tile.BEGIN
         self.board[1] = Tile.END
@@ -45,7 +46,7 @@ class Board:
                     color =  Color.RED.value
                 else:
                     throw(ValueError("Invalid Tile Enum"))
-                pdraw.rect(dsurf, color, (BOXSIZE * (x + self.shift) + MARGIN, BOXSIZE * y + MARGIN,TILESIZE,TILESIZE))
+                pdraw.rect(dsurf, color, (BOXSIZE * (x + self.shift_w) + MARGIN, BOXSIZE * y + self.shift_h + MARGIN,TILESIZE,TILESIZE))
     
     def adjacency(self,pos):
         x,y = pos
