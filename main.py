@@ -11,9 +11,7 @@ from text import *
 from bfs import BFS
 from a_star import ASTAR
 
-
-
-if __name__ == "__main__":
+def init():
     # Create GUI window
     pygame.init()
     DSURF = pygame.display.set_mode((DISPLAYWIDTH,DISPLAYHEIGHT))
@@ -30,15 +28,24 @@ if __name__ == "__main__":
     # Counter for the number of iterations the algorithm have taken
     iter_star = 1
     iter_bfs = 1   
+    return DSURF,board,board2,a_star,bfs,iter_star,iter_bfs
+
+if __name__ == "__main__":
+    # Initialize gridworld and search algorithms
+    DSURF,board,board2,a_star,bfs,iter_star,iter_bfs = init()
     
     while True:
-        
         # Handle events
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.display.quit()
                 sys.exit(0)
-                
+            if event.type == KEYDOWN:
+                key = pygame.key.name(event.key)
+                if key == "r":
+                    # Reinitialize the gridworld
+                    DSURF,board,board2,a_star,bfs,iter_star,iter_bfs = init()
+
         # Count the number of iterations
         if not a_star.next():
             iter_star += 1 
