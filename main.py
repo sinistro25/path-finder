@@ -26,8 +26,9 @@ if __name__ == "__main__":
     a_star = ASTAR(board)
     bfs   = BFS(board2)
     
-    iter_star = 0
-    iter_bfs = 0   
+    iter_star = 1
+    iter_bfs = 1   
+    
     while True:
         
         for event in pygame.event.get():

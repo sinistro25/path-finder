@@ -7,10 +7,15 @@ class BFS:
         self.board = board
         self.back_board = [[None for i in range(board.w)] for j in range(board.h)]
         adj = board.adjacency(board.begin)
-        for x in adj:
-            self.board.visiting(x)
-            self.q.put(x)
+        
         self.done = False
+        for x in adj:
+            tile = board.get(x)
+            if tile == Tile.BLANK:
+                self.board.visiting(x)
+                self.q.put(x)
+            elif tile == Tile.END:
+                self.done = True
     
     def backup(self,pos,back):
         x,y = pos
