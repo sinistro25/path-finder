@@ -1,4 +1,4 @@
-# path-finder
+# Grid World Path Finder
 This is a side-by-side visualization of the BFS and A-STAR algorithms.
 
 This shows that by having a model of the search graph that gives an heuristic function, makes the A* algorithm explore the graph much more efficiently without losing the optimallity of the found path.
