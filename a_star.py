@@ -15,8 +15,6 @@ class ASTAR:
                 d = self.l1(self.board.end,x)
                 self.q.put((1+d,d,x,1))
             elif tile == Tile.END:
-                self.backup(x,node)
-                self.backtrack()
                 self.done = True
     
     def backup(self,pos,back):
